@@ -89,14 +89,12 @@ TCB* removeFromQueue(TCB* tcb, TCB* head){
 
 	tcb->next = null;
 	tcb->previous = null;
-
 	return head;
 }
 
 TCB * addToQueue(TCB* tcb, TCB* listHead){
 	//Go down the queue and check priority of each task
 	TCB * pos = listHead;//listHead;	
-
 	printString("add to queue\n");
 
 	if(listHead == null) {
@@ -125,8 +123,6 @@ TCB * addToQueue(TCB* tcb, TCB* listHead){
 		while(tcb->priority > pos->priority){
 			if(pos->next != null)			
 				pos = pos->next;
-
-
 			else {	//adding to end of queue
 				tcb->previous = pos;
 				tcb->next = null;
@@ -172,14 +168,12 @@ void YKNewTask(void (* task)(void), void *taskStack, unsigned char priority){
 	
 	
 	readyHead = addToQueue(&tcbArray[tcbCount-1], readyHead);
-	
-	// if(!firstRun)
-	
+
 	// printTasks();	
 	if(!firstRun) {
-		// YKExitMutex();
 		YKScheduler();
 	}
+	YKExitMutex();
 }
 
 void YKDispatcher(int first){
@@ -198,7 +192,6 @@ void YKRun(void){
 	// YKExitMutex();
 	YKScheduler();
 }
-
 
 
 void YKDelayTask(unsigned count){

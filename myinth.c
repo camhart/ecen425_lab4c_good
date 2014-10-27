@@ -22,13 +22,12 @@ void keyHandler() {
         printString(") IGNORED\n");
     }
 }
-    
+
 void YKTickHandler() {
     TCB* cur = delayedHead;
     TCB* nextDelayed = null;
 
     YKEnterMutex();
-
     YKTickNum++;
     printString("\nTICK ");
     printInt(YKTickNum);

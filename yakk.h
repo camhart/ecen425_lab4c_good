@@ -1,6 +1,5 @@
 #define null 0
 
-
 typedef enum {
 	DELAYED, BLOCKED, RUNNING, READY
 } State;
@@ -22,12 +21,11 @@ typedef struct TCB {
 	State state;// an enumerated type. blocked, delayed, ready
 	struct TCB * previous; //used when inserting and removing from queue (our queue will be a double linked list)
 	struct TCB * next; // same as above
-	signed delay; //How much time to delay
-	unsigned char priority; //priority value of the current task
+	int delay; //How much time to delay
+	int priority; //priority value of the current task
 	void (* taskFunction)(void);
-	unsigned char runCount;
+	int runCount;
 } TCB;
-
 
 TCB * removeFromQueue(TCB*, TCB*);
 TCB * addToQueue(TCB*, TCB*);
